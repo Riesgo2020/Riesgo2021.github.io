@@ -176,7 +176,7 @@
         }
 
         .second-btn {
-            margin-top: 20px; /* Añadir espacio entre la imagen y el botón */
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -191,14 +191,12 @@
             <img src="https://riesgo2020.github.io/Riesgo2021.github.io/assets/PortadaA.jpg" alt="Imagen del seminario">
         </div>
 
-        <button class="btn" onclick="showThankYou()"><i class="fas fa-download"></i> Descargar Curso</button>
+        <button class="btn" onclick="downloadCurso()"><i class="fas fa-download"></i> Descargar Curso</button>
 
-        <!-- Nueva imagen debajo del botón "Descargar Curso" -->
         <div class="second-image-box">
             <img src="https://riesgo2020.github.io/Riesgo2021.github.io/assets/Triptico.jpg" alt="Imagen de los trípticos">
         </div>
 
-        <!-- Nuevo botón "Descargar Trípticos" con espacio añadido -->
         <button class="btn second-btn" onclick="downloadTripticos()"><i class="fas fa-download"></i> Descargar Trípticos</button>
 
         <div id="thankYouModal" class="modal">
@@ -216,23 +214,35 @@
     </div>
 
     <script>
-        function showThankYou(fileUrl) {
+        function downloadFile(fileUrl, fileName) {
+            const link = document.createElement('a');
+            link.href = fileUrl;
+            link.download = fileName; // Nombre del archivo que se descargará
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function showThankYou(fileUrl, fileName) {
             document.getElementById('thankYouModal').style.display = 'flex';
             setTimeout(function () {
-                window.location.href = fileUrl; // Redirige a la URL del archivo
+                downloadFile(fileUrl, fileName); // Forzar la descarga del archivo
                 closeModal();
-            }, 4000); // Espera 4 segundos antes de redirigir
+            }, 4000); // Espera 4 segundos antes de iniciar la descarga
         }
-    
+
         function closeModal() {
             document.getElementById('thankYouModal').style.display = 'none';
         }
-    
+
         function downloadTripticos() {
-            showThankYou('./assets/Tripticos.pdf'); // Llama a la función con el archivo de los trípticos
+            showThankYou('./assets/Tripticos.pdf', 'Tripticos.pdf'); // Pasa el nombre del archivo
+        }
+
+        function downloadCurso() {
+            showThankYou('./assets/CursodeRiesgo.pdf', 'CursodeRiesgo.pdf'); // Pasa el nombre del archivo
         }
     </script>
-    
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WFW5Y6985Y"></script>
