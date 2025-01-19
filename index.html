@@ -222,7 +222,7 @@
             link.click();
             document.body.removeChild(link);
         }
-
+    
         function showThankYou(fileUrl, fileName) {
             document.getElementById('thankYouModal').style.display = 'flex';
             setTimeout(function () {
@@ -230,19 +230,20 @@
                 closeModal();
             }, 4000); // Espera 4 segundos antes de iniciar la descarga
         }
-
+    
         function closeModal() {
             document.getElementById('thankYouModal').style.display = 'none';
         }
-
+    
         function downloadTripticos() {
             showThankYou('./assets/Tripticos.pdf', 'Tripticos.pdf'); // Pasa el nombre del archivo
         }
-
+    
         function downloadCurso() {
-            showThankYou('./assets/CursodeRiesgo.pdf', 'CursodeRiesgo.pdf'); // Pasa el nombre del archivo
+            showThankYou('./assets/Riesgo.pdf', 'Riesgo.pdf'); // Pasa el nombre del archivo
         }
     </script>
+    
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WFW5Y6985Y"></script>
